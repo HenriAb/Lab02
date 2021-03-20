@@ -2,6 +2,9 @@ package it.polito.tdp.alien;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.alien.model.AlienDictionary;
+import it.polito.tdp.alien.model.AlienDictionaryEn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -9,12 +12,8 @@ import javafx.scene.control.TextField;
 
 public class FXMLController {
 
-	AlienDictionary dizionario;
-	//ha senso??
-    public FXMLController() {
-		super();
-		this.dizionario = new AlienDictionary();
-	}
+	AlienDictionaryEn dizionario = new AlienDictionaryEn();
+//	AlienDictionary dizionario = new AlienDictionary();
 
 	@FXML
     private ResourceBundle resources;
@@ -45,7 +44,7 @@ public class FXMLController {
 		String traduzione = "";
     	if(parole.length < 3) {
     		//voglio che in contenga solo lettere a-zA-Z
-    		if(in.matches("[0-9]") || (!in.matches("[a-zA-Z].+"))) {
+    		if((!in.matches("[a-zA-Z].*"))) {
     			this.txtResult.setText("ERRORE: Devi inserire solo lettere a-zA-Z");
     			this.ripulisci();
     			return;
@@ -55,6 +54,7 @@ public class FXMLController {
     			// inserire parola nel dizionario
     			alien = parole[0].toLowerCase();
     			traduzione = parole[1].toLowerCase();
+
     			this.dizionario.addWord(alien, traduzione);
         		this.txtResult.setText(dizionario.toString()); 
         		this.ripulisci();
@@ -70,7 +70,7 @@ public class FXMLController {
     				return;
     			}
     			else {
-    				this.txtResult.setText("Traduzione: " + this.dizionario.translateWord(alien));
+    				this.txtResult.setText(this.dizionario.translateWord(alien));
     				this.ripulisci();
     				return;
     			}
@@ -126,6 +126,10 @@ public class FXMLController {
     	this.txtInput.clear();
     	//this.txtResult.clear();
     }
+    
+//    public void setModel(AlienDictionary model) {
+//    	this.model = model;
+//    }
     
     @FXML
     void initialize() {

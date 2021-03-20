@@ -1,4 +1,4 @@
-package it.polito.tdp.alien;
+package it.polito.tdp.alien.model;
 
 public class Word {
 	

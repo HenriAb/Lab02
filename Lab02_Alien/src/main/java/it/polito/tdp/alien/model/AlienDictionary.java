@@ -1,4 +1,4 @@
-package it.polito.tdp.alien;
+package it.polito.tdp.alien.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,13 +19,14 @@ public class AlienDictionary {
 	public void addWord(String alienWord, String translation) {
 		
 		String alien = alienWord.toLowerCase();
-		if(alien.matches(".*[a-zA-Z].*")) {
+		String trans = translation.toLowerCase();
+		if(alien.matches("[a-zA-Z]*")) {
 
-			Word parola = new Word(alien, translation);
+			Word parola = new Word(alien, trans);
 			
 			if(this.wordsMap.containsKey(alien)) {
 				//aggiornare
-				this.aggiornaParola(alien, translation);
+				this.aggiornaParola(alien, trans);
 				
 			}
 			
@@ -72,6 +73,6 @@ public class AlienDictionary {
 		this.words.clear();
 		this.wordsMap.clear();
 		
-	}
+	} 
 	
 }
