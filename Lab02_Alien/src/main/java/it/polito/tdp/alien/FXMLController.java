@@ -64,7 +64,7 @@ public class FXMLController {
     		if(parole.length == 1) {
     			// traduco la parola alienword
     			alien = parole[0].toLowerCase();
-    			if(this.dizionario.translateWord(alien).equals("")) {
+    			if(this.dizionario.translateWord(alien) == null){//.equals("")) {
     				this.txtResult.setText("null\nParola non presente nel dizionario!");
     				this.ripulisci();
     				return;
